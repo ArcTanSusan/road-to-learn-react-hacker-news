@@ -21,9 +21,10 @@ const isSearched = searchTerm => item => item.title.toLowerCase().includes(searc
 
 class Search extends Component {
   render() {
-    const {value, onChange} = this.props;
+    const {value, onChange, children} = this.props;
     return (
       <form>
+      {children}
       <input type="text"
         value={value}
         onChange={onChange} />
@@ -67,7 +68,7 @@ class App extends Component {
       list,
       searchTerm: ''
    };
-   // this.onDismiss = this.onDismiss.bind(this); //TODO Not needed????
+   this.onDismiss = this.onDismiss.bind(this); //TODO Not needed????
    this.onSearchChange = this.onSearchChange.bind(this);
   }
 
@@ -90,13 +91,12 @@ class App extends Component {
     return (
     <div className="App">
 
-    <Search value={searchTerm}
-          onChange={this.onSearchChange} />
+    <Search
+          value={searchTerm}
+          onChange={this.onSearchChange}> Search </Search>
     <Table list={list}
           pattern={searchTerm}
           onDismiss={this.onDismiss} />
-
-
 
     </div>);
   }
